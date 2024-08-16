@@ -6,12 +6,12 @@ Certilogo Checker is a Python tool using the Playwright library for automated au
 
 ## Installation
 
-1. **Clone the repository**
+1. **Clone the repository:**
    git clone https://github.com/yourusername/certilogo-checker.git
    cd certilogo-checker
-2. **Install requierements**
+2. **Install requierements:**
    pip install -r requirements.txt
 3. **Paste your bot_token_code to config.py and telegram_bot.py for work bot**
-4. **Run your bot**
+4. **Run your bot:**
    python3 telegram_bot.py
 
