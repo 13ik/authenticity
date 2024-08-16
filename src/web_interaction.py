@@ -19,9 +19,9 @@ async def interact_with_webpage(auth_code):
             await page.wait_for_load_state("networkidle")
 
             if await page.is_visible("text='It\'s a gift'", timeout=3000):
-                return "Authentic!"
+                return "Congratulations! Your code authentic! =)"
             else:
-                return "Not Authentic!"
+                return "Your code not authentic! =("
 
         finally:
             await browser.close()
