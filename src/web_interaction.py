@@ -1,27 +1,27 @@
-from playwright.sync_api import sync_playwright
+from playwright.async_api import async_playwright
 
-def interact_with_webpage(auth_code):
-    with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True)
-        page = browser.new_page()
+async def interact_with_webpage(auth_code):
+   async with async_playwright() as p:
+        browser = await p.chromium.launch(headless=False)
+        context = await browser.new_context(
+                    user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+        )
+
+        page = await context.new_page()
 
         try:
-            page.goto("https://certilogo.com")
-            page.click("#root > div > a.cta-auth.big-cta.active")
-            page.fill("#root > div > div.sc-kbousE.earfJZ > div > form > div > div.sc-tagGq.hGXwx.sc-wkolL.higNce > div.sc-ggpjZQ.eiqIGA > input", auth_code)
-            page.click('text="Start"')
-            page.click('text="Check Authenticity"')
-            page.click('text="After purchase"')
-            page.wait_for_load_state("networkidle")
+            await page.goto("https://certilogo.com")
+            await page.click("#root > div > a.cta-auth.big-cta.active")
+            await page.fill("#root > div > div.sc-kbousE.earfJZ > div > form > div > div.sc-tagGq.hGXwx.sc-wkolL.higNce > div.sc-ggpjZQ.eiqIGA > input", auth_code)
+            await page.click('text="Start"')
+            await page.click('text="Check Authenticity"')
+            await page.click('text="After purchase"')
+            await page.wait_for_load_state("networkidle")
 
-            if page.is_visible("[id='6216181673f60c001f804ac2']", timeout=6000):
-                print("Authentic!")
+            if await page.is_visible("text='It\'s a gift'", timeout=3000):
+                return "Authentic!"
             else:
-                print("Not Authentic!")
+                return "Not Authentic!"
 
         finally:
-            browser.close()
-
-if __name__ == "__main__":
-    auth_code = input("Please enter the authentication code: ")
-    interact_with_webpage(auth_code)
+            await browser.close()
