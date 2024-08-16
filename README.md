@@ -7,7 +7,7 @@ Certilogo Checker is a Python tool using the Playwright library for automated au
 ## Installation
 
 1. **Clone the repository:**
-   git clone https://github.com/yourusername/certilogo-checker.git
+   git clone https://github.com/13ik/certilogo-checker.git
    cd certilogo-checker
 2. **Install requierements:**
    pip install -r requirements.txt
