@@ -1,2 +1,2 @@
 playwright
-python-telegram-bot
+aiogram
