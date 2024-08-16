@@ -5,7 +5,7 @@ from aiogram.types import Message
 from src.config import BOT_TOKEN
 from src.web_interaction import interact_with_webpage
 
-bot = Bot(token="6526749723:AAEDtiEKNgwZj4yyFcfUoF8MRbo01OGYQTY")
+bot = Bot(token="your_token_bot")
 dp = Dispatcher()
 
 @dp.message(Command("start"))
